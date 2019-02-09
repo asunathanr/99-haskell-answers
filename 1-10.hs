@@ -4,3 +4,6 @@
 myLast [x] = x
 myLast li = myLast $ tail $ li
 
+-- Problem 2
+myButLast [x, last] = x
+myButLast li = myButLast $ tail li
