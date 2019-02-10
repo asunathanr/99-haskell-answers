@@ -12,6 +12,7 @@ myLast li = myLast $ tail $ li
 -- Problem 2
 myButLast :: [a] -> a
 myButLast [x, last] = x
+myButLast [x] = x
 myButLast li = myButLast $ tail li
 
 -- Problem 3
@@ -25,3 +26,5 @@ myLength [] = 0
 myLength li = (myLength (tail li)) + 1
 
 -- Problem 5
+myReverse [] = []
+myReverse li = (myReverse (tail li)) ++ [head li]
