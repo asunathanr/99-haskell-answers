@@ -1,4 +1,4 @@
-module OneTen (myLast, myButLast) where
+module OneTen (myLast, myButLast, myReverse) where
 
 -- FILE: OneTen.hs
 -- AUTHOR: Nathan Robertson
