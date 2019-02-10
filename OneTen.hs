@@ -13,3 +13,9 @@ myButLast li = myButLast $ tail li
 -- Problem 3
 elementAt li 1 = head li
 elementAt li n = elementAt (tail li) (n - 1)
+
+
+-- Problem 4
+myLength :: Num p => [a] -> p
+myLength [] = 0
+myLength li = (myLength (tail li)) + 1
