@@ -28,3 +28,7 @@ myLength li = (myLength (tail li)) + 1
 -- Problem 5
 myReverse [] = []
 myReverse li = (myReverse (tail li)) ++ [head li]
+
+-- Problem 6
+isPalindrome :: (Eq a) => [a] -> Bool
+isPalindrome li = li == myReverse li
