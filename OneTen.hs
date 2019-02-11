@@ -26,6 +26,7 @@ myLength [] = 0
 myLength li = (myLength (tail li)) + 1
 
 -- Problem 5
+myReverse :: [a] -> [a]
 myReverse [] = []
 myReverse li = (myReverse (tail li)) ++ [head li]
 
