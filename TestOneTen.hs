@@ -9,6 +9,7 @@ prop_test1BaseCase li = (myLast li) == (head (reverse li))
 
 prop_testMyButLast :: [Int] -> Bool
 prop_testMyButLast [] = [0] == [0]
+prop_testMyButLast [x] = (myButLast [x]) == x
 prop_testMyButLast li = (myButLast li) == (head (tail (reverse li)))
 
 
