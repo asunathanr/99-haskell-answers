@@ -33,3 +33,17 @@ myReverse li = (myReverse (tail li)) ++ [head li]
 -- Problem 6
 isPalindrome :: (Eq a) => [a] -> Bool
 isPalindrome li = li == myReverse li
+
+-- Problem 7
+data NestedList a = Elem a | List [NestedList a]
+{-
+myFlatten (Elem x) = x
+myFlatten (List [Elem x]) =  x 
+myFlatten (List [List xs]) = myFlatten xs 
+-}
+
+-- Problem 8
+
+-- Problem 9
+
+-- Problem 10
