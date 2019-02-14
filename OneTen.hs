@@ -1,4 +1,11 @@
-module OneTen (myLast, myButLast, myReverse) where
+module OneTen 
+(
+  myLast,
+  myButLast,
+  elementAt,
+  myReverse  
+)
+  where
 
 -- FILE: OneTen.hs
 -- AUTHOR: Nathan Robertson
@@ -43,6 +50,12 @@ myFlatten (List [List xs]) = myFlatten xs
 -}
 
 -- Problem 8
+compress :: (Eq a) => [a] -> [a]
+compress [] = []
+compress [x] = [x]
+compress (x:xs)
+    | x == (head xs) = x:(compress (tail xs))
+    | otherwise = x:(compress xs)
 
 -- Problem 9
 
