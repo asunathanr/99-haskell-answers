@@ -57,6 +57,12 @@ compress (x:xs)
     | x == (head xs) = x:(compress (tail xs))
     | otherwise = x:(compress xs)
 
+
 -- Problem 9
+-- Pack consecutive duplicates of list elements into sublists
+pack :: (Eq a) => [a] -> [[a]]
+pack [] = []
+pack (x:xs) = [(takeWhile (\item -> x == item) (x:xs))] ++ (pack (dropWhile (\item -> x == item) xs)) 
+          
 
 -- Problem 10
