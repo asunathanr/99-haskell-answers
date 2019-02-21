@@ -52,12 +52,11 @@ Flatten a nested list structure.
 Transform a list, possibly holding lists as elements into a `flat' list by replacing each list with its elements (recursively). 
 We have to define a new data type, because lists in Haskell are homogeneous
 -}
-data NestedList a = Elem a | List [NestedList a]
-{-
-myFlatten (Elem x) = x
-myFlatten (List [Elem x]) =  x 
-myFlatten (List [List xs]) = myFlatten xs 
--}
+data NestedList a = Elem a | List [NestedList a] deriving (Show)
+
+myFlatten (Elem x) = [x]
+myFlatten (List x) = concatMap myFlatten x
+
 
 -- Problem 8
 {-
