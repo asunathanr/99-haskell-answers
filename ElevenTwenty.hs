@@ -1,3 +1,12 @@
+module ElevenTwenty
+(
+  encodeModified,
+  decodeModified,
+  duplicate
+)
+  where
+
+
 import OneTen
 
 -- FILE: OneTen.hs
@@ -18,6 +27,7 @@ encodeModified :: (Eq a) => [a] -> [Encoding a]
 encodeModified li = map extractUnique (encode li)
 
 -- Helper for problem 11
+-- Is not exported as part of module.
 extractUnique :: (Int, a) -> Encoding a
 extractUnique (val, x)
     | val == 1 = Single x
@@ -32,6 +42,8 @@ extractUnique (val, x)
 -}
 decodeModified :: [Encoding a] -> [a]
 decodeModified [] = []
+decodeModified ((Single x):xs) = [x] ++ (decodeModified xs)
+decodeModified ((Multiple (val, x)):xs) = (replicate val x) ++ (decodeModified xs)
 
 
 --Problem 14
@@ -39,3 +51,4 @@ duplicate :: [a] -> [a]
 duplicate [] = []
 duplicate [x] = [x] ++ [x]
 duplicate (x:xs) = [x] ++ [x] ++ (duplicate xs)
+
