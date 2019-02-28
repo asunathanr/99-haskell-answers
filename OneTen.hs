@@ -3,7 +3,13 @@ module OneTen
   myLast,
   myButLast,
   elementAt,
-  myReverse  
+  myLength,
+  myReverse,
+  isPalindrome,
+  myFlatten,
+  compress,
+  pack,
+  encode
 )
   where
 
@@ -54,6 +60,7 @@ We have to define a new data type, because lists in Haskell are homogeneous
 -}
 data NestedList a = Elem a | List [NestedList a] deriving (Show)
 
+myFlatten :: NestedList a -> [a]
 myFlatten (Elem x) = [x]
 myFlatten (List x) = concatMap myFlatten x
 
@@ -82,5 +89,6 @@ pack (x:xs) = [takeWhile (\item -> x == item) (x:xs)] ++ (pack (dropWhile (\item
 {-
 Run-length encoding of a list. Use the result of problem P09 to implement the so-called run-length encoding data compression method. Consecutive duplicates of elements are encoded as lists (N E) where N is the number of duplicates of the element E
 -}
+encode :: (Eq a) => [a] -> [(Int, a)]
 encode [] = []
-encode xs = (zip (map (\subList -> length subList) (pack xs)) (map (\subList -> (head subList)) (pack xs)))
+encode xs = zip (map (\subList -> length subList) (pack xs)) (map (\subList -> (head subList)) (pack xs))
