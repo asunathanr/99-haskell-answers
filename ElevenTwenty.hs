@@ -15,15 +15,27 @@ import OneTen
 data Encoding a = Single a | Multiple (Int, a) deriving Show
 
 encodeModified :: (Eq a) => [a] -> [Encoding a]
-encodeModified [] = []
 encodeModified li = map extractUnique (encode li)
-{-
-encodeModified (x:xs)
-  | x == (head xs) = [Multiple (2, x)]
-  | otherwise = [Single x]
--}
+
+-- Helper for problem 11
 extractUnique :: (Int, a) -> Encoding a
 extractUnique (val, x)
     | val == 1 = Single x
     | otherwise = Multiple (val, x)
 
+
+-- Problem 12
+{-
+  Decode a run-length encoded list.
+
+  Given a run-length code list generated as specified in problem 11. Construct its uncompressed version. 
+-}
+decodeModified :: [Encoding a] -> [a]
+decodeModified [] = []
+
+
+--Problem 14
+duplicate :: [a] -> [a]
+duplicate [] = []
+duplicate [x] = [x] ++ [x]
+duplicate (x:xs) = [x] ++ [x] ++ (duplicate xs)
