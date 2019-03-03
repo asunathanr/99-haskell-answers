@@ -52,3 +52,16 @@ duplicate [] = []
 duplicate [x] = [x] ++ [x]
 duplicate (x:xs) = [x] ++ [x] ++ (duplicate xs)
 
+
+-- Problem 15
+-- Replicate the elements of a list a given number of times.
+repli [] n = []
+repli xs n = (repeatHelper (head xs) n) ++ (repli (tail xs) n)
+
+
+-- Helper for problem 15
+-- Forms a list of value x repeated n times
+-- Example: repeat 'a' 2 -> ['a', 'a']
+repeatHelper x n = if n == 0
+  then []
+  else [x] ++ (repeatHelper x (n - 1))
