@@ -99,7 +99,8 @@ dropEvery xs n = (take (n - 1) xs) ++ (dropEvery (drop n xs) n)
 Split a list into two parts; the length of the first part is given.
 
 Do not use any predefined predicates. 
+Note: Previous version had two other patterns which covered base cases an
+empty list and where n == 0 respectively.
+The solution set just uses the one pattern below.
 -}
-split [] n = ([], [])
-split xs 0 = ([], xs)
 split xs n = ((take n xs), (drop n xs))
