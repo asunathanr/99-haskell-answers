@@ -104,3 +104,12 @@ empty list and where n == 0 respectively.
 The solution set just uses the one pattern below.
 -}
 split xs n = ((take n xs), (drop n xs))
+
+
+-- Problem 18
+{-
+Extract a slice from a list.
+
+Given two indices, i and k, the slice is the list containing the elements between the i'th and k'th element of the original list (both limits included). Start counting the elements with 1. 
+-}
+slice xs i k = (take (k - i + 1) (drop (i - 1) xs))
