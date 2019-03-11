@@ -11,7 +11,7 @@ import OneTen
 
 -- FILE: OneTen.hs
 -- AUTHOR: Nathan Robertson
--- Answers to problems 11 to 20, questions found here: https://wiki.haskell.org/99_questions/
+-- Answers to problems 11 to 20, questions found here: https://wiki.haskell.org/99_questions
 
 
 -- Problem 11
@@ -46,6 +46,24 @@ decodeModified ((Single x):xs) = [x] ++ (decodeModified xs)
 decodeModified ((Multiple (val, x)):xs) = (replicate val x) ++ (decodeModified xs)
 
 
+
+-- Problem 13
+--Run-length encoding of a list (direct solution).
+--Implement the so-called run-length encoding data compression method directly. I.e. don't explicitly create the sublists containing the duplicates, as in problem 9, but only count them. As in problem P11, simplify the result list by replacing the singleton lists (1 X) by X. 
+encodeDirect [] = []
+encodeDirect li = [encodeOnce li] ++ (encodeDirect (dropWhile (\x -> x == (head li)) li))
+
+-- Helper for problem 13
+encodeOnce li = convertDuplicates (takeWhile (\x -> x == (head li)) li)
+
+-- Helper for problem 13
+convertDuplicates li =
+  if length li == 1 then
+    Single (head li)
+  else
+    Multiple ((length li), (head li))
+
+
 --Problem 14
 duplicate :: [a] -> [a]
 duplicate [] = []
@@ -58,10 +76,19 @@ duplicate (x:xs) = [x] ++ [x] ++ (duplicate xs)
 repli [] n = []
 repli xs n = (repeatHelper (head xs) n) ++ (repli (tail xs) n)
 
-
 -- Helper for problem 15
 -- Forms a list of value x repeated n times
 -- Example: repeat 'a' 2 -> ['a', 'a']
-repeatHelper x n = if n == 0
-  then []
-  else [x] ++ (repeatHelper x (n - 1))
+repeatHelper x n =
+   if n == 0 then
+     []
+  else
+    [x] ++ (repeatHelper x (n - 1))
+
+
+-- Problem 16
+-- Drop every N'th element from a list
+dropEvery :: [a] -> Int -> [a]
+dropEvery [] n = []
+dropEvery xs 0 = xs
+dropEvery xs n = (take (n - 1) xs) ++ (dropEvery (drop n xs) n) 
