@@ -92,3 +92,14 @@ dropEvery :: [a] -> Int -> [a]
 dropEvery [] n = []
 dropEvery xs 0 = xs
 dropEvery xs n = (take (n - 1) xs) ++ (dropEvery (drop n xs) n) 
+
+
+-- Problem 17
+{-
+Split a list into two parts; the length of the first part is given.
+
+Do not use any predefined predicates. 
+-}
+split [] n = ([], [])
+split xs 0 = ([], xs)
+split xs n = ((take n xs), (drop n xs))
