@@ -2,7 +2,8 @@ module ElevenTwenty
 (
   encodeModified,
   decodeModified,
-  duplicate
+  duplicate,
+  split
 )
   where
 
@@ -113,3 +114,25 @@ Extract a slice from a list.
 Given two indices, i and k, the slice is the list containing the elements between the i'th and k'th element of the original list (both limits included). Start counting the elements with 1. 
 -}
 slice xs i k = (take (k - i + 1) (drop (i - 1) xs))
+
+
+
+-- Problem 19
+{-
+
+-}
+rotate :: [a] -> Int -> [a]
+rotate xs 0 = xs
+rotate xs n = 
+  if n > 0 then
+    rotate ((drop 1 xs) ++ (take 1 xs)) (n - 1)
+  else
+    rotate (reverse xs) ((abs n) - 1)
+
+
+
+-- Problem 20
+{-
+Remove the K'th element from a list.
+-}
+removeAt n xs = (slice xs 1 (n - 1)) ++ (slice xs (n + 1) (length xs))
