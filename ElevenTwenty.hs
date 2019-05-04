@@ -3,7 +3,8 @@ module ElevenTwenty
   encodeModified,
   decodeModified,
   duplicate,
-  split
+  split,
+  removeAt
 )
   where
 
@@ -28,7 +29,6 @@ encodeModified :: (Eq a) => [a] -> [Encoding a]
 encodeModified li = map extractUnique (encode li)
 
 -- Helper for problem 11
--- Is not exported as part of module.
 extractUnique :: (Int, a) -> Encoding a
 extractUnique (val, x)
     | val == 1 = Single x
